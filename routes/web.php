@@ -10,3 +10,5 @@ Route::get('/login', [sitecontroler::class, 'login'])->name('login');
 Route::get('/register', [sitecontroler::class, 'register'])->name('register');
 Route::get('/myprofile', [sitecontroler::class, 'myprofile'])->name('myProfile');
 Route::get('/navbar', [sitecontroler::class, 'navbar'])->name('navbar');
+Route::get('/loginPage', [sitecontroler::class, 'loginPage'])->name('loginPage');
+Route::get('/registerPage', [sitecontroler::class, 'registerPage'])->name('registerPage');

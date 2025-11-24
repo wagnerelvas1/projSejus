@@ -17,7 +17,7 @@
     <a href="{{Route('myProfile')}}"><i class="fa-solid fa-circle-user"></i></a>
     <form class="d-flex" role="search">
       {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/> --}}
-      <button class="btn btn-outline-success" type="submit">Login</button>
+        <a href="{{ route('login') }}" class="btn btn-outline-success">Login</a>
     </form>
   </div>
 </nav>

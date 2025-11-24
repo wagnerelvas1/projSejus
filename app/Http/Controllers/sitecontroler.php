@@ -34,4 +34,10 @@ class sitecontroler extends Controller
     {
         return view('myprofile');
     }
+    public function loginPage(){
+        return view('loginPage');
+    }
+    public function registerPage(){
+        return view('registerPage');
+    }
 }
