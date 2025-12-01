@@ -4,7 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-class Jogos extends Model
+
+class Generos extends Model
 {
-    use HasFactory;
+    protected $table = 'Jogos';
+
+    protected $fillable = [
+        'id_jogo',
+        'nome_jogo',
+        'valor',
+        'id_genero',
+        'description'
+    ];
+
+    public $timestamps = false;
 }

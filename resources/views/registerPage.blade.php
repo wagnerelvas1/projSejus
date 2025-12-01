@@ -17,7 +17,8 @@
                     height="50px"></a>
             <h2 class="title">Registrar-se</h2>
             <div class="form-box">
-                <form action="">
+                <form action="/registerPage" method="POST">
+                    @csrf
                     <div class="side">
                         <div class="name-box">
                             <label for="name">
@@ -26,16 +27,6 @@
                                 <span class="focus-bg"></span>
                             </label>
                         </div>
-                        <div for="inp" class="email-box">
-                            <label for="email">
-                                <input type="email" name="email" id="email" placeholder="&nbsp;">
-                                <span class="label">Email</span>
-                                <span class="focus-bg"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="side">
                         <div class="cpf-box">
                             <label for="cpf">
                                 <input type="text" name="cpf" id="cpf" placeholder="&nbsp;">
@@ -43,34 +34,83 @@
                                 <span class="focus-bg"></span>
                             </label>
                         </div>
-                        <div class="idade-box">
-                            <label for="idade">
-                                <input type="number" name="idade" id="idade" placeholder="&nbsp;">
-                                <span class="label">Idade</span>
-                                <span class="focus-bg"></span>
-                            </label>
-                        </div>
+
                     </div>
 
                     <div class="side">
-                        <div class="endereco-box">
-                            <label for="endereco">
-                                <input type="text" name="endereco" id="endereco" placeholder="&nbsp;">
-                                <span class="label">Endereço</span>
-                                <span class="focus-bg"></span>
-                            </label>
-                        </div>
                         <div class="password-box">
-
                             <label for="password">
                                 <input type="password" name="password" id="password" placeholder="&nbsp;">
                                 <span class="label">Senha</span>
                                 <span class="focus-bg"></span>
                             </label>
                         </div>
+
+                        <div class="idade-box">
+                            <label for="idade">
+                                <input type="date" name="idade" id="idade" placeholder="&nbsp;">
+                                <span class="label">Data de Nascimento</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                    </div>
+                        <div for="inp" class="email-box">
+                            <label for="email">
+                                <input type="email" name="email" id="email" placeholder="&nbsp;">
+                                <span class="label">Email</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                    <div class="side">
+                        <div class="rua-box">
+                            <label for="endereco">
+                                <input type="text" name="rua" id="rua" placeholder="&nbsp;">
+                                <span class="label">Rua</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                        <div class="numero-box">
+                            <label for="endereco">
+                                <input type="text" name="numero" id="numero" placeholder="&nbsp;">
+                                <span class="label">Numero</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="side">
+                        <div class="bairro-box">
+                            <label for="endereco">
+                                <input type="text" name="bairro" id="bairro" placeholder="&nbsp;">
+                                <span class="label">Bairro</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                        <div class="cep-box">
+                            <label for="endereco">
+                                <input type="text" name="cep" id="cep" placeholder="&nbsp;">
+                                <span class="label">CEP</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="side">
+                        <div class="cidade-box">
+                            <label for="endereco">
+                                <input type="text" name="cidade" id="cidade" placeholder="&nbsp;">
+                                <span class="label">Cidade</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
+                        <div class="estado-box">
+                            <label for="endereco">
+                                <input type="text" name="estado" id="estado" placeholder="&nbsp;">
+                                <span class="label">Estado</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                        </div>
                     </div>
                     <button class="submit-btn">Registrar</button>
-                    <p>Já tem uma conta? <a href="{{Route('loginPage')}}">Login</a></p>
+                    <p>Já tem uma conta? <a href="{{Route('login')}}">Login</a></p>
                 </form>
             </div>
     </section>

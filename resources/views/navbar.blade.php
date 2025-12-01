@@ -15,9 +15,9 @@
             <a class="link-navbar" href="{{Route('homePage')}}">Home</a>
             <a class="link-navbar" href="{{Route('gamesPage')}}">Catalogo</a>
             <a class="link-navbar" href="{{Route('aboutUs')}}">Sobre Nós</a>
-            <a class="link-navbar" href="{{Route('myProfile')}}"><i class=""></i></a>
         </div>
-        <a class="login" href="{{ route('login') }}" class="">Login</a>
+        <a class="link-navbar-img3" href="{{Route('myProfile')}}"><i class=""><img src="{{asset('images/iconProfile.png')}}" alt="" width="40px" height="40px"></i></a>
+        <a class="login" href="{{ route('login') }}">Login</a>
 </div>
 </nav>
 <main>
