@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
+@section('title', 'Login')
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/styleLogin.css') }}?v={{ file_exists(public_path('css/styleLogin.css')) ? filemtime(public_path('css/styleLogin.css')) : time() }}">
-    <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/styleLogin.css') }}?v={{ file_exists(public_path('assets/css/styleLogin.css')) ? filemtime(public_path('assets/css/styleLogin.css')) : time() }}">
+
 </head>
 
 <body>
     <section class="login-box">
         <div class="content">
-            <a class="link-logo" href="{{Route('homePage')}}"><img src="{{asset('images/logoNova.png')}}" alt="" width="50px" height="50px"></a>
+            <a class="link-logo" href="{{Route('homePage')}}"><img src="{{asset('assets/images/logoNova.png')}}" alt="" width="50px" height="50px"></a>
             <h2>Login</h2>
             <div class="form-box">
                 <form action="{{route('authenticate')}}" method="POST">

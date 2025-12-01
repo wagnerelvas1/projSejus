@@ -1,18 +1,27 @@
-@extends('navbar')
+@extends('layout')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="resources/css/bootstrap.css">
-    <title>Sobre Nós</title>
-</head>
+@section('title', 'Sobre Nós')
+
+@section('styles')
+  <link rel="stylesheet" href="{{ asset('assets/css/styleAboutUs.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+@endsection
+
 @section('content')
 <body>
-    <h1>About Us</h1>
-<i class="fa-solid fa-circle-user"></i>
+    <section id="banner">
+        <div class="container">
+            <div class="banner_headline">
+                <h1>Sobre Nós</h1>
+
+                <h1>A melhor loja online</h1>
+
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet ligula in eros pharetra porttitor. In suscipit, lacus et fringilla feugiat, ante erat ultricies diam, vitae congue dolor nulla nec tellus.
+                Ullam justo tellus, interdum id aliquam et, aliquet eget massa. Curabitur nec massa porta, ullamcorper urna lacinia,  auctor nisi.</h2>
+            </div>
+        </div>
+    </section>
 </body>
-</html>
 @endsection
+
+

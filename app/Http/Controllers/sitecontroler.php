@@ -33,9 +33,9 @@ class sitecontroler extends Controller
     {
         return view('registerPage');
     }
-    public function navbar()
+    public function layout()
     {
-        return view('navbar');
+        return view('layout');
     }
     public function myprofile()
     {
