@@ -91,6 +91,11 @@ img{
     padding: 40px 20px;
 }
 
+.footer a {
+    text-decoration: none;
+    color: #FFF;
+}
+
 /* Footer container */
 .footer_container {
     display: flex;

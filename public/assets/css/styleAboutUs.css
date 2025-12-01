@@ -6,12 +6,11 @@
     padding: 0;
 }
 
-html, body {
+body {
     height: 100%;
 }
 
 body {
-    background: linear-gradient(135deg, #09204C, #3A6BA5);
     display: flex;
     flex-direction: column;
     color: FFF;

@@ -1,18 +1,14 @@
 @extends('layout')
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sobre Nós</title>
+@section('title', 'Sobre Nós')
+
+@section('styles')
   <link rel="stylesheet" href="{{ asset('assets/css/styleAboutUs.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+@endsection
 
 @section('content')
 <body>
-
     <section id="banner">
         <div class="container">
             <div class="banner_headline">
@@ -25,8 +21,7 @@
             </div>
         </div>
     </section>
-
-  {{-- <i class="fa-solid fa-circle-user"></i> --}}
 </body>
-</html>
 @endsection
+
+
