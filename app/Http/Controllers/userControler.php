@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\sitecontroler;
+use App\Http\Controllers\Controller; // Ajuste no namespace base
 use App\Models\Enderecos;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +13,34 @@ class userControler extends Controller
 {
     public function store(Request $request){
 
-        $user = new User();
-        $endereco= new Enderecos();
+        // 1. Validação dos Dados
+        // Se falhar aqui, o Laravel redireciona automaticamente de volta com os erros.
+        $request->validate([
+            // Dados do Usuário
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email', // Garante que o email é único na tabela users
+            'cpf'      => 'required|string|max:14|unique:users,cpf', // Garante CPF único (ajuste max se usar pontuação)
+            'password' => 'required|string|min:8', // Mínimo de 8 caracteres para segurança
+            'idade'    => 'required|date', // Valida se é uma data válida
 
+            // Dados do Endereço
+            'rua'    => 'required|string|max:255',
+            'numero' => 'required|string|max:20',
+            'cidade' => 'required|string|max:255',
+            'estado' => 'required|string|size:2', // Ex: RO, SP (2 letras)
+            'cep'    => 'required|string|max:9',
+            'bairro' => 'required|string|max:255',
+        ], [
+            // (Opcional) Mensagens personalizadas
+            'email.unique' => 'Este email já está cadastrado.',
+            'cpf.unique'   => 'Este CPF já está em uso.',
+            'password.min' => 'A senha deve ter no mínimo 8 caracteres.',
+            'required'     => 'O campo :attribute é obrigatório.'
+        ]);
+
+        // 2. Lógica de Salvamento (só executa se passar na validação acima)
+
+        $endereco = new Enderecos();
         $endereco->rua = $request->rua;
         $endereco->numero = $request->numero;
         $endereco->cidade = $request->cidade;
@@ -24,29 +49,34 @@ class userControler extends Controller
         $endereco->bairro = $request->bairro;
         $endereco->save();
 
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->cpf = $request->cpf;
         $user->password = Hash::make($request->password);
         $user->data_nascimento = $request->idade;
         $user->id_endereco = $endereco->id;
-        // Preenchendo Parte tabela endereços
 
         $user->save();
-        return redirect()->route('login');
+
+        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
     }
 
     public function authenticate(Request $request) {
         $credenciais = $request->validate([
-            'email' => ['required','email'],
+            'email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
         if (Auth::attempt($credenciais)){
             $request->session()->regenerate();
-            return view('myprofile');
+            // return view('myprofile'); // Recomendado usar redirect para evitar reenvio de form
+            return redirect()->route('myprofile'); // Supondo que exista uma rota nomeada assim
         } else {
-            return redirect()->back()->withErrors('error', 'Login ou Senha Incorretos');
+            // Ajustei o withErrors para o formato padrão do Laravel
+            return back()->withErrors([
+                'email' => 'As credenciais fornecidas estão incorretas.',
+            ])->onlyInput('email');
         }
     }
 }
