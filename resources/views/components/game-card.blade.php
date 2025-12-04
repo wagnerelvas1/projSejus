@@ -10,10 +10,12 @@
     <img src="{{ $image }}" alt="{{ $title }}">
     <h3>{{ $title ?: 'Título do jogo' }}</h3>
     <p class="platform">{{ $platform ?: 'Plataforma'}}</p>
+
     <p class="price">
         R$ {{ number_format((float)$price, 2, ',', '.') }}
         @if($discount)
         <span class="discount">-{{ $discount }}%</span></p>
         @endif
+    </p>
     <button>Comprar</button>
 </div>

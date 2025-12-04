@@ -2,12 +2,12 @@
     --color-dark: 0, 0, 0;
     --color-primary: #193d7a;
     --color-secondary: #09204c;
-    color: #FFF;
 }
 
 body {
     font-family: "Inter", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif;
+    color: #FFF !important;
     background-color: var(--color-secondary);
     background-image: radial-gradient(
         circle,
