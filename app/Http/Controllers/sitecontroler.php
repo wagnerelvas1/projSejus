@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\userControler;
 use App\Models\Enderecos;
 use App\Models\User;
 use App\Models\Usuarios;
@@ -42,10 +43,7 @@ class sitecontroler extends Controller
     public function registerPage(){
         return view('registerPage');
     }
-    public function myprofile()
-    {
-        return view('Perfil.myprofile');
-    }
+
     public function biblioteca(){
         return view('Perfil.biblioteca');
     }

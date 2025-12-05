@@ -36,6 +36,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function edereco()
+    {
+        return $this->belongsTo(Enderecos::class, 'id_endereco', 'id_endereco');
+    }
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class, 'fk_wishlist_to_user', 'user_id');

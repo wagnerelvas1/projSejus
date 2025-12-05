@@ -59,8 +59,17 @@ class userControler extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('homePage');
     }
-    public function alterdados(){
-        $user = User::all(auth());
-        return view('myprofile', compact('user'));
+    public function myprofile()
+    {
+        if(Auth::check()){
+            $user = Auth::user();
+
+            return view('Perfil.myprofile', compact('user'));
+        }
+        return view('Perfil.myprofile');
     }
+    public function registerPage(){
+        return view('registerPage');
+    }
+
 }

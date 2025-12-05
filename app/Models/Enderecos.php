@@ -23,6 +23,6 @@ class Enderecos extends Model
         public $timestamps = false;
         public function usuario()
     {
-        return $this->hasOne(User::class, 'id_endereco');
+        return $this->hasOne(User::class, 'id_endereco', 'user_id');
     }
 }

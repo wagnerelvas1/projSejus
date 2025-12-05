@@ -21,12 +21,12 @@ Route::post('/logout', [userControler::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function(){
 
-    Route::get('/myprofile', [sitecontroler::class, 'myprofile'])->name('myProfile');
+    Route::get('/myprofile', [userControler::class, 'myprofile'])->name('myProfile');
     Route::get('/myprofile/wishlist', [sitecontroler::class, 'wishlist'])->name('wishlist');
     Route::get('/myprofile/biblioteca', [sitecontroler::class, 'biblioteca'])->name('biblioteca');
     Route::get('/baseperfil', [sitecontroler::class, 'baseperfil'])->name('baseperfil');
 });
 
-Route::get('/registerPage', [sitecontroler::class, 'registerPage'])->name('registerPage');
+Route::get('/registerPage', [userControler::class, 'registerPage'])->name('registerPage');
 Route::post('/registerPage', [userControler::class, 'store']);
 

@@ -1,6 +1,5 @@
 @extends('layout')
-
-@section('content')
+@section('styles')
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=favorite,settings" />
@@ -12,8 +11,10 @@
 
         /* Classe auxiliar para hover cinza nas abas inativas */
         .hover-bg-gray:hover { background-color: #f8f9fa; cursor: pointer; }
-    </style>
+        </style>
 </head>
+@endsection
+@section('content')
 
 <body class="bg-light">
     <div class="container mt-5 mb-4">
@@ -67,6 +68,5 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 @endsection
