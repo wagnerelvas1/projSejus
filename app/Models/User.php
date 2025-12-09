@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
     public function jogos()
     {
-        return $this->meus_jogos()->belongsTo(Jogos::class, 'fk_meus_jogos_to_jogos', 'id_jogo');
+        return $this->belongsToMany(Jogos::class, 'Meus_Jogos', 'fk_meus_jogos_to_user', 'fk_meus_jogos_to_jogos', 'user_id', 'id_jogo');
     }
 
 }
