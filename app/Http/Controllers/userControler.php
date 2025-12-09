@@ -33,7 +33,7 @@ class userControler extends Controller
         $user->cpf = $request->cpf;
         $user->password = Hash::make($request->password);
         $user->data_nascimento = $request->idade;
-        $user->id_endereco = $endereco->id;
+        $user->id_endereco = $endereco->id_endereco;
         // Preenchendo Parte tabela endereços
 
         $user->save();
@@ -78,50 +78,6 @@ class userControler extends Controller
         return view('Perfil.myprofile');
     }
 
-     public function biblioteca(Request $request){
-        $user = Auth::user();
-
-        $dados = [];
-        if($request->ajax()){
-
-            return view('Perfil.content.biblioteca_content', compact('dados'));
-        }
-
-
-        $jogosModel = new Meus_Jogos();
-        $jogos = $jogosModel->getJogosByUserId($user->user_id);
-        $jogos->map(function($jogo){
-            if($jogo->image_path){
-                $jogo->imagem = Storage::disk('s3')->temporaryUrl($jogo->image_path, Carbon::now()->add(5, 'minutes'));
-            }else{
-                $jogo->imagem = asset('assets/images/defaultGame.jpg');
-            }
-            return $jogo;
-        });
-        // dd($jogos);
-        return view('Perfil.biblioteca', ['jogos'=> $jogos]);
-    }
-
-    public function wishlist(Request $request){
-
-        $user = Auth::user();
-
-        if($request->ajax()){
-            return view('Perfil.content.wishlist_content', compact('dados'));
-        }
-        $jogosModel = new Wishlist();
-        $jogos = $jogosModel->getJogosByUserId($user->user_id);
-        $jogos->map(function($jogo){
-            if($jogo->image_path){
-                $jogo->imagem = Storage::disk('s3')->temporaryUrl($jogo->image_path, Carbon::now()->add(5, 'minutes'));
-            }else{
-                $jogo->imagem = asset('assets/images/defaultGame.jpg');
-            }
-            return $jogo;
-        });
-        // dd($jogo);
-        return view('Perfil.wishlist', ['jogos'=>$jogos]);
-    }
 
     public function baseperfil(){
         return view('Perfil.basePerfil');

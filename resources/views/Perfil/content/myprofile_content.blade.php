@@ -39,7 +39,7 @@
 
             <div class="w-100">
                 <label class="form-label text-muted small mb-0 fw-bold">Localização</label>
-                <input type="text" class="form-control border-0 bg-transparent px-0 fw-medium" value="{{$user->edereco->cidade}}-{{$user->edereco->estado}} , {{$user->edereco->rua}}-{{$user->edereco->numero}}"
+                <input type="text" class="form-control border-0 bg-transparent px-0 fw-medium" value="{{$user->endereco?->cidade ?? ''}}-{{$user->endereco?->estado ?? ''}} , {{$user->endereco?->rua ?? ''}}-{{$user->endereco?->numero ?? ''}}"
                 style="box-shadow: none;">
                 <hr class="my-1 text-muted">
             </div>

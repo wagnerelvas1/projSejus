@@ -23,6 +23,6 @@ class Enderecos extends Model
         ];
         public function usuario()
     {
-        return $this->hasOne(User::class, 'id_endereco', 'user_id');
+        return $this->hasOne(User::class, 'id_endereco', 'id_endereco');
     }
 }

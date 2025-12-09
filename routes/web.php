@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\wishlistControler;
+use App\Http\Controllers\bibliotecaControler;
 use App\Http\Controllers\userControler;
 use App\Http\Controllers\sitecontroler;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +25,8 @@ Route::post('/logout', [userControler::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function(){
 
     Route::get('/myprofile', [userControler::class, 'myprofile'])->name('myProfile');
-    Route::get('/myprofile/wishlist', [userControler::class, 'wishlist'])->name('wishlist');
-    Route::get('/myprofile/biblioteca', [userControler::class, 'biblioteca'])->name('biblioteca');
+    Route::get('/myprofile/wishlist', [wishlistControler::class, 'wishlist'])->name('wishlist');
+    Route::get('/myprofile/biblioteca', [bibliotecaControler::class, 'biblioteca'])->name('biblioteca');
     Route::get('/baseperfil', [userControler::class, 'baseperfil'])->name('baseperfil');
 });
 

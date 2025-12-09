@@ -35,7 +35,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function edereco()
+    public function endereco()
     {
         return $this->belongsTo(Enderecos::class, 'id_endereco', 'id_endereco');
     }
