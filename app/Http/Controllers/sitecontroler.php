@@ -25,6 +25,10 @@ class sitecontroler extends Controller
     {
         return view('registerPage');
     }
+    public function carrinho()
+    {
+        return view('carrinho');
+    }
     public function layout()
     {
         return view('layout');

@@ -50,13 +50,13 @@
         <div class="mt-auto">
             @if($original_price && $original_price > $price)
                 <small class="text-muted text-decoration-line-through">
-                    R$ {{ number_format($original_price, 2, ',', '.') }}
+                    Valor Pago R$ {{ number_format($original_price, 2, ',', '.') }}
                 </small>
             @endif
 
             <div class="d-flex justify-content-between align-items-center">
                 <span class="h5 mb-0 fw-bold text-success">
-                    R$ {{ number_format($price, 2, ',', '.') }}
+                    Valor Pago R$ {{ number_format($price, 2, ',', '.') }}
                 </span>
 
                 <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">

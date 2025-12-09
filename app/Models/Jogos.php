@@ -43,4 +43,8 @@ class Jogos extends Model
     {
         return $this->hasMany(Wishlist::class, 'id_jogo');
     }
+    public function carrinho()
+    {
+        return $this->hasMany(Carrinho::class, 'id_jogo');
+    }
 }
