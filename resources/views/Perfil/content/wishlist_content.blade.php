@@ -6,6 +6,7 @@
     @foreach ($jogos as $jogo)
 
         <x-card-wishlist
+            :id="$jogo->id_jogo"
             :title="$jogo->nome_jogo"
             :plataform="$jogo->plataforma"
             :price="$jogo->valor"

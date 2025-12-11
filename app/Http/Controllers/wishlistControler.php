@@ -23,7 +23,7 @@ class wishlistControler extends Controller
         }
 
         if($user->hasGame($id_jogo)) {
-            return redirect()->back()-with('error', 'Você já possui esse jogo');
+            return redirect()->back()->with('error', 'Você já possui esse jogo');
         }
 
         if($user->hasInWishlist($id_jogo)) {
