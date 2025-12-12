@@ -42,10 +42,6 @@ class adminJogosController extends Controller
             $validated['image_path'] = $path;
         }
 
-        //Cálculo do preço final
-        $discount = $validated['discount'] ?? 0;
-        $validated['final_price'] = $validated['valor'] - ($validated['valor'] * ($discount / 100));
-
         Jogos::create($validated);
 
         return redirect()->route('admin.jogos.index')->with('success', 'Jogo adicionado com sucesso!');
@@ -64,7 +60,7 @@ class adminJogosController extends Controller
             'nome_jogo' => 'required|string|max:255',
             'plataforma' => 'required|string|max:255',
             'valor' => 'required|numeric|min:0',
-            'discount' => 'nullable|numeric|min:0|max:100', // ? Verificar se é correto desconto aqui
+            'discount' => 'nullable|numeric|min:0|max:100',
             'image_path' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
@@ -75,7 +71,7 @@ class adminJogosController extends Controller
                 Storage::disk('s3')->delete($jogo->image_path);
             }
 
-            //Pego o nome original do arquivo
+            //Pega o nome original do arquivo
             $filename = $jogo->id_jogo . '_' . $request->file('image_path')->getClientOriginalName();
 
             // Faz upload usando o nome original
@@ -83,10 +79,6 @@ class adminJogosController extends Controller
 
             $validated['image_path'] = $path;
         }
-
-        // Recalcular preço final
-        $discount = $validated['discount'] ?? 0;
-        $validated ['final_price'] = $validated['valor'] - ($validated['valor'] * ($discount / 100));
 
         $jogo->update($validated);
 
