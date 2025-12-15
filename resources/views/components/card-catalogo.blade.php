@@ -23,7 +23,7 @@
 
 <div class="card h-100 border-0 shadow-sm overflow-hidden group-hover-effect mb-3">
     <div class="position-relative">
-        <a href="#">
+        <a href="{{ route('jogo.show', $id) }}">
             <img src="{{ $img }}" class="card-img-top object-fit-cover mx-auto mt-0" style="height: 200px; width: 100%;" alt="{{ $title }}">
         </a>
 
@@ -61,7 +61,7 @@
 
                 <div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                    <a href="{{ route('jogo.show', $id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">
                         Ver
                     </a>
 

@@ -3,7 +3,7 @@
     <h3 class="h3 mb-2 fw-bold">Minha Biblioteca</h3>
     <p class="text-muted">Seus jogos e conteúdos adquiridos</p>
 </div>
-
+@section('title', 'Biblioteca')
 <div class="row row-cols-md-3 ">
 
     @foreach ($jogos as $jogo)

@@ -12,10 +12,9 @@ use App\Http\Controllers\AdminJogosController;
 Route::get('/', [JogosController::class, 'index'])->name('homePage');
 Route::get('/layout', [sitecontroler::class, 'layout'])->name('layout');
 Route::get('/about', [sitecontroler::class, 'about'])->name('aboutUs');
-
-// Lista de Jogos/Catalago
 Route::get('/catalogo', [jogosController::class, 'catalogo'])->name('gamesPage');
-Route::get('/games/{id}', [sitecontroler::class, 'show']);
+
+Route::get('/games/{id}', [jogosController::class, 'show'])->name('jogo.show');
 Route::get('/carrinho',[sitecontroler::class, 'carrinho'])->name('carrinho');
 
 // -- Autenticação (Login, Registro e Logout)

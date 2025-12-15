@@ -40,5 +40,20 @@ class JogosController extends Controller
         return view('gamesPage', ['jogos' => $jogos]);
 
     }
+    public function show($id)
+    {
+        $jogo = Jogos::findOrFail($id);
+
+        if ($jogo->image_path) {
+        $jogo->imagem = \Illuminate\Support\Facades\Storage::disk('s3')
+            ->temporaryUrl($jogo->image_path, \Carbon\Carbon::now()->addMinutes(5));
+        } else {
+            $jogo->imagem = asset('assets/images/defaultGame.jpg');
+        }
+
+        return view('Jogos.show', compact('jogo'));
+
+
+    }
 }
 
