@@ -8,6 +8,7 @@
 
 @section('content')
 <body>
+    {{-- Banner --}}
     <section class="banner">
         <div class="banner-overlay"></div>
         <img src="{{ asset('assets/images/bannerHome.png') }}" alt="Banner promocional" class="banner-img">
@@ -16,26 +17,49 @@
     <h1>HOME</h1>
     <p> In eget pharetra elit, non placerat leo. Ut malesuada lectus at augue commodo lobortis. Phasellus tempus, lorem porttitor tincidunt euismod, arcu neque aliquet enim, nec consectetur tellus nulla quis sem.</p>
 
+    {{-- Exibição dos Jogos em Carrossel --}}
     <section class="container my-5">
         <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            @foreach($promocoes as $index => $jogo)
-              <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                <img src="{{ $jogo->imagem }}" class="d-block w-100" style="height: 800px; object-fit: cover;" alt="{{ $jogo->nome_jogo }}">
-                <div class="carousel-caption d-none d-md-block bg-white bg-opacity-35 rounded p-3">
-                  <h5 class="text-black">{{ $jogo->nome_jogo }}</h5>
-                  <p>
-                    <span class="text-decoration-line-through text-muted">R$ {{ number_format($jogo->valor, 2, ',', '.') }}</span>
-                    <span class="fw-bold text-success ms-2">R$ {{ number_format($jogo->final_price, 2, ',', '.') }}</span>
-                  </p>
-                  <a href="{{ route('homePage') }}" class="btn btn-primary">Ver promoção</a>
-                </div>
-              </div>
-            @endforeach
-          </div>
+            <div class="carousel-inner">
+                @foreach($promocoes as $index => $jogo)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                        <div class="row g-5">
+                            {{-- Banner Principal --}}
+                            <div class="col-md-8 ">
+                                <div class="rounded-5">
+                                    <img src="{{ $jogo->imagem }}" class="img-fluid rounded-3 w-100 h-100 object-fit-cover" alt="{{ $jogo->nome_jogo }}">
+                                </div>
+                                <div class="carousel-caption  bg-opacity-100 rounded p-3">
+                                    <h5 class="text-white fw-bold">{{ $jogo->nome_jogo }}</h5>
 
-          <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
+                                    <div class="d-flex align-items-center gap-2">
+                                        {{-- Caixa Vemelha % desconto --}}
+                                        <span class="badge bg-danger fs-6 shadow-sm">-{{ $jogo->discount }}%</span>
+
+                                        {{-- Preços empilhados --}}
+                                        <div class="d-flex flex-column">
+                                            <span class="text-white text-decoration-line-through small">R$ {{ number_format($jogo->valor, 2, ',', '.') }}</span>
+                                            <span class="fw-bold text-white fs-5">R$ {{ number_format($jogo->final_price, 2, ',', '.') }}</span>
+                                        </div>
+                                        <a href="{{ route('homePage') }}" class="btn btn-primary">Ver promoção</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {{-- Dois banners menores à direita --}}
+                            <div class="col-md-4 d-flex flex-column gap-4">
+                                <img src="{{ $jogo->imagem }}" class="img-fluid rounded object-fit-cover flex-fill" alt="Promo extra 1">
+                                <img src="{{ $jogo->imagem }}" class="img-fluid rounded object-fit-cover flex-fill" alt="Promo extra 2">
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+          {{-- Botões voltar e avançar --}}
+          <button class="carousel-control-prev ms-2" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon me-3" class="icon icon-left"></span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon"></span>
@@ -44,6 +68,7 @@
     </section>
 
 
+    {{-- Exibição dos Jogos em Cards --}}
     <section class="container my-5">
         <div class="row">
             @foreach ($jogos as $jogo)

@@ -26,102 +26,32 @@
     pointer-events: none;
 }
 
-/* Layout Card jogos descontos */
-.game-strip {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding-inline: 20px;
-    padding-block: 40px;
-    overflow-x: auto;
-    scroll-padding-inline: 20px;
-}
-
-.game-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 360px;
-    background-color: #0F1C3A;
-    border-radius: 8px;
-    padding: 16px;
-    width: 420px;
-    flex-shrink: 0;
-    text-align: center;
-    color: #FFF;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-.game-card img {
-    width: 100%;
-    height: 160px;
+/* CARROSSEL */
+#promoCarousel img {
+    border-radius: 25px !important;
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 12px;
 }
 
-.game-card h3 {
-    font-size: 1.1rem;
-    margin: 8px 0;
-    max-height: 2.6em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
+#promoCarousel .carousel-caption {
+    bottom: 15px;
+    left: 15px;
+    right: auto;
+    max-width: 70%;
 }
 
-.platform {
-    font-size: 0.9rem;
-    color: #AAA;
-    height: 20px;
-}
+/* #promoCarousel .carousel-control-prev,
+#promoCarousel .carousel-control-next {
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+} */
 
-/* Estilização dos Preços e Descontos */
-.price {
-    font-size: 1rem;
-    margin: 6px 0;
-}
-.price-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-
-.price-line {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-}
-
-.price-final {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #FFF;
-}
-
-.price-original {
-    font-size: 0.85rem;
-    color: #AAA;
-    text-decoration: line-through;
-}
-.discount {
-    color: #FF4C4C;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-button {
-    background-color: #193D7A;
-    color: #FFF;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: auto;
-}
-
-button:hover {
-    background-color: #2A4F9C;
+#promoCarousel .carousel-caption h5,
+#promoCarousel .carousel-caption span,
+#promoCarousel .carousel-caption p,
+#promoCarousel .carousel-caption a {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
