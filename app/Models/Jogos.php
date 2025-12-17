@@ -39,7 +39,7 @@ class Jogos extends Model
 
     public function JogosGenero()
     {
-        return $this->hasMany(Jogo_genero::class, 'id_jogo');
+        return $this->hasMany(Jogo_genero::class, 'fk_jogo_genero_to_jogos', 'id_jogo');
     }
     public function Wishlist()
     {
