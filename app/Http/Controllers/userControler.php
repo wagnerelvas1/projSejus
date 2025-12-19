@@ -94,4 +94,55 @@ class userControler extends Controller
         return view('registerPage');
     }
 
+    // Função de Atulizar dados do Usuário
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $field = $request->input('field');
+        $value = $request->input('value');
+
+        // Validação simples
+        // Campo email
+        if ($field === 'email') {
+            $request->validate(['value' => 'required|email']);
+            $user->email = $value;
+            $user->save();
+        }
+        // Campo telefone
+        if ($field === 'telefone') {
+            $request->validate(['value' => 'required|string|max:20']);
+            $user->telefone = $value;
+            $user->save();
+        }
+        // Campo data_nascimento
+        if ($field === 'data_nascimento') {
+            $request->validate(['value' => 'required|date']);
+            $user->data_nascimento = $value;
+            $user->save();
+        }
+
+        // Campo Endereço
+        if ($field === 'endereco') {
+            $data = $request->input('value');
+
+            $request->validate([
+                'value.cidade' => 'required|string|max:255',
+                'value.estado' => 'required|string|max:255',
+                'value.rua' => 'required|string|max:255',
+                'value.bairro' => 'required|string|max:255',
+                'value.numero' => 'required|string|max:255',
+                'value.cep' => 'required|string|max:255',
+            ]);
+
+            if ($user->endereco) {
+                $user->endereco->update($data);
+            } else {
+                $user->endereco()->create($data);
+            }
+        }
+
+        return response()->json(['success' => true, 'value' => $value]);
+    }
+
 }
