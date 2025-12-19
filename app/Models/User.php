@@ -19,6 +19,7 @@ class User extends Authenticatable
         'email',
         'password',
         'cpf',
+        'telefone',
         'data_nascimento',
         'id_endereco',
         'is_admin'
@@ -41,7 +42,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(\App\Models\Enderecos::class, 'id_endereco', 'id_endereco');
     }
-    // Verificar se o usuário é Administrador
 
     public function wishlist()
     {
@@ -52,6 +52,7 @@ class User extends Authenticatable
         return $this->hasMany(Meus_Jogos::class, 'fk_meus_jogos_to_user', 'user_id');
     }
 
+    // Verificar se o usuário é Administrador
     public function isAdmin()
     {
         return $this->is_admin === 1;
