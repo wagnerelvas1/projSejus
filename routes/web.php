@@ -55,6 +55,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/myprofile', [userControler::class, 'myprofile'])->name('myProfile');
     Route::get('/myprofile/biblioteca', [bibliotecaControler::class, 'biblioteca'])->name('biblioteca');
     Route::get('/baseperfil', [userControler::class, 'baseperfil'])->name('baseperfil');
+
+    // Função alterar dados do usuário
+    Route::put('/myprofile/update', [userControler::class, 'update'])->name('myProfile.update');
+
     // Função Adicionar e Remover jogo da Wishlist
     Route::post('/wishlist/add/{id_jogo}', [wishlistControler::class, 'add'])
     ->name('wishlist.add')
