@@ -15,7 +15,7 @@ height: 100%;
 background-attachment: fixed;
 
 }
-.teste{
+.tdropdown{
 background: linear-gradient(var(--color-primary), var(--color-secondary));
 width: 100%;
 border-bottom-left-radius: 30px;
