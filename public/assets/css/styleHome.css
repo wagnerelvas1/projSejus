@@ -1,127 +1,102 @@
-/* Banner */
-.banner {
+.hero-wrapper {
+    margin-top: -30px;
     position: relative;
-    width: 100%;
-    height: 800px;
     overflow: hidden;
-    background-attachment: fixed;
 }
 
-.banner-img {
-    width: 100%;
-    height: 800px;
-    object-fit: cover;
-    object-position: top;
-    margin: 0;
-    padding: 0;
-}
-
-.banner-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 400px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(9, 32, 76, 0.9) 100%);
-    pointer-events: none;
-}
-
-/* Layout Card jogos descontos */
-.game-strip {
+/* Hero */
+.hero {
+    background: url('/assets/images/futuristic-bg.png') center/cover no-repeat;
+    min-height: 60vh;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    padding-inline: 20px;
-    padding-block: 40px;
-    overflow-x: auto;
-    scroll-padding-inline: 20px;
+    position: relative;
+    z-index: 1;
 }
 
-.game-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 360px;
-    background-color: #0F1C3A;
-    border-radius: 8px;
-    padding: 16px;
-    width: 420px;
-    flex-shrink: 0;
-    text-align: center;
-    color: #FFF;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+/* Fade na base */
+.hero-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    /* Vertical fade */
+    linear-gradient(
+        to bottom,
+        rgba(18,58,140,0) 0%,     /* transparente no topo */
+        rgba(18,58,140,0) 35%, /* ainda transparente até ~270px */
+        #10044e 45%,              /* começa a escurecer */
+        #10044e 90%,              /* mantém escuro no meio */
+        rgba(18,58,140,0) 100%    /* transparente na base */
+    );
+    pointer-events: none;
+    z-index: 2;
 }
 
-.game-card img {
-    width: 100%;
-    height: 160px;
+
+/* Carrossel */
+#promoCarousel {
+    margin-top: -120px;
+    position: relative;
+    z-index: 3;
+}
+
+
+
+#promoCarousel img {
+    border-radius: 25px !important;
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 12px;
 }
 
-.game-card h3 {
-    font-size: 1.1rem;
-    margin: 8px 0;
-    max-height: 2.6em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
+#promoCarousel .carousel-caption {
+    bottom: 15px;
+    left: 15px;
+    right: auto;
+    max-width: 70%;
 }
 
-.platform {
-    font-size: 0.9rem;
-    color: #AAA;
-    height: 20px;
+/* Botões menores e fora da imagem */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px;          /* área de clique menor */
+  height: 50px;
+  top: 50%;             /* centraliza verticalmente */
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9); /* opcional: fundo semitransparente */
+  border-radius: 50%;   /* opcional: botão arredondado */
 }
 
-/* Estilização dos Preços e Descontos */
-.price {
-    font-size: 1rem;
-    margin: 6px 0;
-}
-.price-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+/* Alinha para fora da imagem */
+.carousel-control-prev {
+  left: -60px;   /* empurra para fora do carrossel */
 }
 
-
-.price-line {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+.carousel-control-next {
+  right: -60px;  /* empurra para fora do carrossel */
 }
 
-.price-final {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #FFF;
+/* Ícones menores */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+  background-size: 100% 100%;
 }
 
-.price-original {
-    font-size: 0.85rem;
-    color: #AAA;
-    text-decoration: line-through;
-}
-.discount {
-    color: #FF4C4C;
-    font-size: 0.9rem;
-    font-weight: bold;
+/* Caixa de texto carrossel */
+#promoCarousel .carousel-caption h5,
+#promoCarousel .carousel-caption span,
+#promoCarousel .carousel-caption p,
+#promoCarousel .carousel-caption a {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
-button {
-    background-color: #193D7A;
-    color: #FFF;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: auto;
-}
-
-button:hover {
-    background-color: #2A4F9C;
+/* Informações carrossel direita */
+.small-banner-caption {
+    bottom: 0;         /* fixa no rodapé da imagem */
+    left: 15px;        /* afasta da borda esquerda */
+    right: 15px;       /* limita para não estourar à direita */
+    padding: 8px 10px; /* espaço interno opcional */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }

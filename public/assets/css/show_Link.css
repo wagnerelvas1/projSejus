@@ -1,0 +1,11 @@
+
+.btn-white-on-blue-hover {
+    color: white !important;
+    border-color: white !important;
+}
+
+.btn-white-on-blue-hover:hover {
+    color: white !important;
+    border-color: transparent !important;
+
+}

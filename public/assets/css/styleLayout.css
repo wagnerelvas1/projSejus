@@ -15,11 +15,15 @@ height: 100%;
 background-attachment: fixed;
 
 }
-.teste{
+.tdropdown{
 background: linear-gradient(var(--color-primary), var(--color-secondary));
 width: 100%;
 border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
+position: sticky ;
+z-index: 1000;
+top: 0;
+margin-bottom: 30px !important;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .layout-container {

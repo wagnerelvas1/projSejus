@@ -21,9 +21,9 @@ class userControler extends Controller
         $endereco= new Enderecos();
 
         $endereco->rua = $request->rua;
-        $endereco->numero = $request->numero;
         $endereco->cidade = $request->cidade;
         $endereco->estado = $request->estado;
+        $endereco->numero = $request->numero;
         $endereco->cep = $request->cep;
         $endereco->bairro = $request->bairro;
         $endereco->save();
@@ -33,13 +33,15 @@ class userControler extends Controller
         $user->cpf = $request->cpf;
         $user->password = Hash::make($request->password);
         $user->data_nascimento = $request->idade;
-        $user->id_endereco = $endereco->id;
+        $user->id_endereco = $endereco->id_endereco;
+        $user->telefone = $request->telefone;
         // Preenchendo Parte tabela endereços
 
         $user->save();
         return redirect()->route('login');
     }
 
+    // Função verificar autenticação do usuário
     public function authenticate(Request $request) {
         $credenciais = $request->validate([
             'email' => ['required','email'],
@@ -48,7 +50,13 @@ class userControler extends Controller
 
         if (Auth::attempt($credenciais)){
             $request->session()->regenerate();
+
+            if (Auth::user()->isAdmin()) {
+                return redirect()->route('admin.jogos.index');
+            }
+
             return redirect()->route('myProfile');
+
         } else {
             return redirect()->back()->withErrors(['login' => 'Login ou Senha Incorretos'])
             ->withInput();
@@ -66,62 +74,18 @@ class userControler extends Controller
     public function myprofile(Request $request)
     {
         if($request->ajax()){
-            $user = Auth::user();
+            $user = User::with('endereco')->find(Auth::id());
             return view('Perfil.content.myprofile_content', compact('user'));
         }
 
         if(Auth::check()){
-            $user = Auth::user();
+            $user = User::with('endereco')->find(Auth::id());
 
             return view('Perfil.myprofile', compact('user'));
         }
         return view('Perfil.myprofile');
     }
 
-     public function biblioteca(Request $request){
-        $user = Auth::user();
-
-        $dados = [];
-        if($request->ajax()){
-
-            return view('Perfil.content.biblioteca_content', compact('dados'));
-        }
-
-
-        $jogosModel = new Meus_Jogos();
-        $jogos = $jogosModel->getJogosByUserId($user->user_id);
-        $jogos->map(function($jogo){
-            if($jogo->image_path){
-                $jogo->imagem = Storage::disk('s3')->temporaryUrl($jogo->image_path, Carbon::now()->add(5, 'minutes'));
-            }else{
-                $jogo->imagem = asset('assets/images/defaultGame.jpg');
-            }
-            return $jogo;
-        });
-        // dd($jogos);
-        return view('Perfil.biblioteca', ['jogos'=> $jogos]);
-    }
-
-    public function wishlist(Request $request){
-
-        $user = Auth::user();
-
-        if($request->ajax()){
-            return view('Perfil.content.wishlist_content', compact('dados'));
-        }
-        $jogosModel = new Wishlist();
-        $jogos = $jogosModel->getJogosByUserId($user->user_id);
-        $jogos->map(function($jogo){
-            if($jogo->image_path){
-                $jogo->imagem = Storage::disk('s3')->temporaryUrl($jogo->image_path, Carbon::now()->add(5, 'minutes'));
-            }else{
-                $jogo->imagem = asset('assets/images/defaultGame.jpg');
-            }
-            return $jogo;
-        });
-        // dd($jogo);
-        return view('Perfil.wishlist', ['jogos'=>$jogos]);
-    }
 
     public function baseperfil(){
         return view('Perfil.basePerfil');
@@ -129,6 +93,57 @@ class userControler extends Controller
 
     public function registerPage(){
         return view('registerPage');
+    }
+
+    // Função de Atulizar dados do Usuário
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $field = $request->input('field');
+        $value = $request->input('value');
+
+        // Validação simples
+        // Campo email
+        if ($field === 'email') {
+            $request->validate(['value' => 'required|email']);
+            $user->email = $value;
+            $user->save();
+        }
+        // Campo telefone
+        if ($field === 'telefone') {
+            $request->validate(['value' => 'required|string|max:20']);
+            $user->telefone = $value;
+            $user->save();
+        }
+        // Campo data_nascimento
+        if ($field === 'data_nascimento') {
+            $request->validate(['value' => 'required|date']);
+            $user->data_nascimento = $value;
+            $user->save();
+        }
+
+        // Campo Endereço
+        if ($field === 'endereco') {
+            $data = $request->input('value');
+
+            $request->validate([
+                'value.cidade' => 'required|string|max:255',
+                'value.estado' => 'required|string|max:255',
+                'value.rua' => 'required|string|max:255',
+                'value.bairro' => 'required|string|max:255',
+                'value.numero' => 'required|string|max:255',
+                'value.cep' => 'required|string|max:255',
+            ]);
+
+            if ($user->endereco) {
+                $user->endereco->update($data);
+            } else {
+                $user->endereco()->create($data);
+            }
+        }
+
+        return response()->json(['success' => true, 'value' => $value]);
     }
 
 }

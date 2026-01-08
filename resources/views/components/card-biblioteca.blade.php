@@ -9,23 +9,7 @@
 
 ])
 
-{{-- <div class="card box shadow-sm mb-3" >
-    <div class="bg-secondary bg-gradiant pt-1">
-
-        <h4 class="card-subtitle text-center ">{{$plataform}}</h4>
-    </div>
-    <a href="">
-
-        <img class="teste card-img-top rounded-botto mx-auto d-block mt-0" src="{{$img}}" alt="{{$title}}">
-    </a>
-    <div class="card-body">
-
-        <h3 class="card-title">{{$title ?: 'Titulo do jogo'}}</h3>
-        <h5 class="card-subtitle">Valor Pago R$ {{$price}}</h5>
-
-    </div>
-</div> --}}
-<div class="card h-100 border-0 shadow-sm overflow-hidden group-hover-effect mb-3">
+<div class="card h-100 border-0 shadow-lg overflow-hidden group-hover-effect mb-3">
     <div class="position-relative">
         <a href="#">
             <img src="{{ $img }}" class="card-img-top object-fit-cover mx-auto mt-0" style="height: 200px; width: 100%;" alt="{{ $title }}">
@@ -50,7 +34,7 @@
         <div class="mt-auto">
             @if($original_price && $original_price > $price)
                 <small class="text-muted text-decoration-line-through">
-                    R$ {{ number_format($original_price, 2, ',', '.') }}
+                   R$ {{ number_format($original_price, 2, ',', '.') }}
                 </small>
             @endif
 

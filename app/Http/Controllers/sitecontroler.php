@@ -13,10 +13,6 @@ class sitecontroler extends Controller
     {
         return view('aboutUs');
     }
-    public function games()
-    {
-        return view('gamesPage');
-    }
     public function login()
     {
         return view('loginPage');
@@ -24,6 +20,10 @@ class sitecontroler extends Controller
     public function register()
     {
         return view('registerPage');
+    }
+    public function carrinho()
+    {
+        return view('carrinho');
     }
     public function layout()
     {

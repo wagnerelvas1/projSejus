@@ -21,7 +21,7 @@ class Jogo_genero extends Model
     {
         return $this->belongsTo(Generos::class, 'fk_jogo_genero_to_genero', 'id_genero');
     }
-    public function joog(){
+    public function Jogo(){
         return $this->belongsTo(Jogos::class, 'fk_jogo_genero_to_jogos','id_jogo');
     }
 }

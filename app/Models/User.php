@@ -19,8 +19,10 @@ class User extends Authenticatable
         'email',
         'password',
         'cpf',
+        'telefone',
         'data_nascimento',
-        'id_endereco'
+        'id_endereco',
+        'is_admin'
     ];
 
     protected $hidden = [
@@ -35,10 +37,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function edereco()
+
+    public function endereco()
     {
-        return $this->belongsTo(Enderecos::class, 'id_endereco', 'id_endereco');
+        return $this->belongsTo(\App\Models\Enderecos::class, 'id_endereco', 'id_endereco');
     }
+
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class, 'fk_wishlist_to_user', 'user_id');
@@ -47,9 +51,38 @@ class User extends Authenticatable
     {
         return $this->hasMany(Meus_Jogos::class, 'fk_meus_jogos_to_user', 'user_id');
     }
+
+    // Verificar se o usuário é Administrador
+    public function isAdmin()
+    {
+        return $this->is_admin === 1;
+    }
+    public function hasGame($id_jogo)
+    {
+        return $this->meus_jogos()
+                    ->where('fk_meus_jogos_to_jogos', $id_jogo)
+                    ->exists();
+    }
+
+    public function hasInWishlist($id_jogo)
+    {
+        return $this->wishlist()
+                    ->where('fk_wishlist_to_jogos' , $id_jogo)
+                    ->exists();
+    }
+
+    public function hasInCarrinho($id_jogo)
+    {
+        return $this->carrinho()
+                    ->where('fk_carrinho_to_jogos' , $id_jogo)
+                    ->exists();
+    }
+
     public function jogos()
     {
         return $this->belongsToMany(Jogos::class, 'Meus_Jogos', 'fk_meus_jogos_to_user', 'fk_meus_jogos_to_jogos', 'user_id', 'id_jogo');
     }
-
+    public function carrinho(){
+        return $this->hasMany(Carrinho::class, 'fk_carrinho_to_user', 'user_id');
+    }
 }
